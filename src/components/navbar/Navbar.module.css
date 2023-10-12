@@ -2,7 +2,7 @@
     padding-left: 20px;
     padding-top: 20px;
     grid-area: n;
-    background-color: blanchedalmond;
+    background-color: #ee6c70;
 }
 
 .item {
@@ -10,5 +10,5 @@
 }
 
 .active {
-    color: aqua;
+    color: #fff47f;
 }
