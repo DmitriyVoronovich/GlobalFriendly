@@ -1,0 +1,13 @@
+.profile {
+    grid-area: c;
+}
+
+.profile_img {
+    width: 100%;
+    height: 300px;
+}
+
+.avatar_img {
+    width: 90px;
+    height: 90px;
+}
