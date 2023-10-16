@@ -3,6 +3,7 @@
     padding-top: 20px;
     grid-area: n;
     background-color: #ee6c70;
+    height: 80vh;
 }
 
 .item {
