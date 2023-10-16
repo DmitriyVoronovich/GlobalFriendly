@@ -12,6 +12,10 @@
 
 }
 
+.dialogsItems a{
+color: black;
+}
+
 .dialogsItems .active{
     color: #ee6c70;
 }
