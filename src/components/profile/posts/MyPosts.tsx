@@ -2,12 +2,17 @@ import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./post/Post";
 
-const postData = [
-    {id: 1, message: 'Hi, how are you?', like: 15},
-    {id: 1, message: 'It\'s my first post!', like: 20}
-]
+type MyPostsPropsType = {
+    posts: PostType[]
+}
 
-const MyPosts = () => {
+type PostType = {
+    id: number
+    message: string
+    like: number
+}
+
+const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     return (
         <div>
             My post
@@ -16,7 +21,7 @@ const MyPosts = () => {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                {postData.map((item) => {
+                {props.posts.map((item) => {
                     return (
                         <Post key={item.id} like={item.like} message={item.message}/>
                     )
