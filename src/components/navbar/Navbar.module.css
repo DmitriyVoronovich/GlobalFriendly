@@ -10,6 +10,6 @@
     color: white;
 }
 
-.active {
+.item a.active {
     color: #fff47f;
 }

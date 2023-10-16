@@ -1,4 +1,17 @@
-.dialogs {
+.dialogs h2 {
     grid-area: c;
     margin: 0 auto;
+}
+
+.dialogWrapper {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialogsItems {
+
+}
+
+.dialogsItems .active{
+    color: #ee6c70;
 }
