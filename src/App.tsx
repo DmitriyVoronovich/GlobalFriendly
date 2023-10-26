@@ -10,7 +10,25 @@ import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 
 type AppPropsType = {
+    state: StateType
+}
+
+type StateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPageType
+    sidbar: SidebarType[]
+}
+
+export type SidebarType = {
+    id: number
+    name: string
+}
+
+export type ProfilePageType = {
     posts: PostType[]
+}
+
+export type DialogsPageType = {
     dialog: DialogType[]
     message: MessageType[]
 }
@@ -23,6 +41,7 @@ export type DialogType = {
 export type MessageType = {
     id: number
     message: string
+    you: boolean
 }
 
 export type PostType = {
@@ -33,14 +52,14 @@ export type PostType = {
 
 const App:React.FC<AppPropsType> = (props) => {
 
-    const {posts, dialog, message} = props
+    const {state} = props
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar/>
-                <Route render={() => <Profile posts={posts}/>} path={'/profile'}/>
-                <Route render={() => <Dialogs dialog={dialog} message={message}/>} path={'/dialogs'}/>
+                <Navbar state={state.sidbar}/>
+                <Route render={() => <Profile state={state.profilePage} />} path={'/profile'}/>
+                <Route render={() => <Dialogs state={state.dialogsPage}/>} path={'/dialogs'}/>
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>

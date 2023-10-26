@@ -2,19 +2,19 @@ import React from 'react';
 import s from './Profile.module.css'
 import MyPosts  from "./posts/MyPosts";
 import ProfileInfo from "./profile-info/ProfileInfo";
-import {PostType} from "../../App";
+import {ProfilePageType} from "../../App";
 
 type ProfilePropsType = {
-    posts: PostType[]
+    state: ProfilePageType
 }
 
 const Profile: React.FC<ProfilePropsType> = (props) => {
-    const {posts} = props
+    const {state} = props
 
     return (
         <div className={s.profile}>
             <ProfileInfo/>
-            <MyPosts posts={posts}/>
+            <MyPosts posts={state.posts}/>
         </div>
     );
 };

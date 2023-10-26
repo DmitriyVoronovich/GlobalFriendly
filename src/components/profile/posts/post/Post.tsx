@@ -1,5 +1,6 @@
 import React from 'react';
 import s from "./Post.module.css";
+import profileImg from '../../../../assets/image/profile.webp'
 
 type PostPropsType = {
     message: string
@@ -9,7 +10,7 @@ type PostPropsType = {
 const Post:React.FC<PostPropsType> = (props:PostPropsType) => {
     return (
         <div className={s.item}>
-            <img src={'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}/>
+            <img src={profileImg}/>
             {props.message}
             <div>
                 <span>{props.like} </span><span>like</span>

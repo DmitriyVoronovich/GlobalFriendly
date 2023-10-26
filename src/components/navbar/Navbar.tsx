@@ -1,16 +1,39 @@
 import React from 'react';
 import s from './Navbar.module.css'
 import {NavLink} from "react-router-dom";
+import {SidebarType} from "../../App";
+import profileImg from "../../assets/image/profile.webp";
 
-const Navbar = () => {
+type NavbarPropsType = {
+    state: SidebarType[]
+}
+
+const Navbar: React.FC<NavbarPropsType> = (props) => {
+    const {state} = props
+
     return (
-        <nav className={s.nav}>
-            <div className={s.item}><NavLink to={'/profile'} activeClassName={s.active}>Profile</NavLink></div>
-            <div className={s.item}><NavLink to={'/dialogs'} activeClassName={s.active}>Messages</NavLink></div>
-            <div className={s.item}><NavLink to={'/news'} activeClassName={s.active}>News</NavLink></div>
-            <div className={s.item}><NavLink to={'/music'} activeClassName={s.active}>Music</NavLink></div>
-            <div className={s.item}><NavLink to={'/settings'} activeClassName={s.active}>Settings</NavLink></div>
-        </nav>
+        <div className={s.navBar}>
+            <nav className={s.nav}>
+                <div className={s.item}><NavLink to={'/profile'} activeClassName={s.active}>Profile</NavLink></div>
+                <div className={s.item}><NavLink to={'/dialogs'} activeClassName={s.active}>Messages</NavLink></div>
+                <div className={s.item}><NavLink to={'/news'} activeClassName={s.active}>News</NavLink></div>
+                <div className={s.item}><NavLink to={'/music'} activeClassName={s.active}>Music</NavLink></div>
+                <div className={s.item}><NavLink to={'/settings'} activeClassName={s.active}>Settings</NavLink></div>
+                <div className={s.sidebar}>
+                    <span className={s.sidebarTitle}>Friends</span>
+                    <div className={s.sidebarWrapper}>
+                        {state.map(item => {
+                            return (
+                                <div className={s.sidebarItem} key={item.id}>
+                                    <img className={s.sidebarImg} src={profileImg}/>
+                                    <span className={s.sidebarName}>{item.name}</span>
+                                </div>
+                            )
+                        })}
+                    </div>
+                </div>
+            </nav>
+        </div>
     );
 };
 

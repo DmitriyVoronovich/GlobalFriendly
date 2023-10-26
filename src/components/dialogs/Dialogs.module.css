@@ -9,13 +9,21 @@
 }
 
 .dialogsItems {
-
+    display: flex;
+    flex-direction: column;
 }
 
-.dialogsItems a{
-color: black;
+.dialogsItems a {
+    color: black;
 }
 
-.dialogsItems .active{
+.dialogsItems .active {
     color: #ee6c70;
+}
+
+.dialogMassages {
+    width: 40vw;
+    display: flex;
+    flex-flow: column nowrap;
+    margin-right: auto;
 }
