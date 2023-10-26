@@ -9,18 +9,41 @@ import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 
+type AppPropsType = {
+    posts: PostType[]
+    dialog: DialogType[]
+    message: MessageType[]
+}
 
-function App() {
+export type DialogType = {
+    id: number
+    name: string
+}
+
+export type MessageType = {
+    id: number
+    message: string
+}
+
+export type PostType = {
+    id: number
+    message: string
+    like: number
+}
+
+const App:React.FC<AppPropsType> = (props) => {
+
+    const {posts, dialog, message} = props
     return (
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
-                <Route component={Profile} path={'/profile'}/>
-                <Route component={Dialogs} path={'/dialogs'}/>
-                <Route component={News} path={'/news'}/>
-                <Route component={Music} path={'/music'}/>
-                <Route component={Settings} path={'/settings'}/>
+                <Route render={() => <Profile posts={posts}/>} path={'/profile'}/>
+                <Route render={() => <Dialogs dialog={dialog} message={message}/>} path={'/dialogs'}/>
+                <Route render={() => <News/>} path={'/news'}/>
+                <Route render={() => <Music/>} path={'/music'}/>
+                <Route render={() => <Settings/>} path={'/settings'}/>
             </div>
         </BrowserRouter>
     );

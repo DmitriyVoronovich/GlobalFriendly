@@ -1,18 +1,14 @@
 import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./post/Post";
+import {PostType} from "../../../App";
 
-type MyPostsPropsType = {
+type MyPostsPropsType ={
     posts: PostType[]
 }
 
-type PostType = {
-    id: number
-    message: string
-    like: number
-}
-
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
+    const {posts} = props
     return (
         <div>
             My post
@@ -21,7 +17,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                 <button>Add post</button>
             </div>
             <div className={s.posts}>
-                {props.posts.map((item) => {
+                {posts.map((item) => {
                     return (
                         <Post key={item.id} like={item.like} message={item.message}/>
                     )
