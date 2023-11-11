@@ -1,5 +1,4 @@
 .massagesItemYou {
-    margin-bottom: 10px;
     margin-left: auto;
     order: 2;
     display: flex;
@@ -9,7 +8,6 @@
 }
 
 .massagesItem {
-    margin-bottom: 10px;
     margin-right: auto;
     order: 2;
     display: flex;
@@ -22,4 +20,10 @@
     height: 40px;
     border-radius: 50%;
     border: 1px solid black;
+}
+
+.massagesText {
+    border: 1px solid rgba(17, 17, 21, 0.4);
+    border-radius: 15px;
+    padding: 5px;
 }

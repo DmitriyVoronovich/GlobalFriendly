@@ -13,8 +13,8 @@ const Message: React.FC<MessagePropsType> = (props) => {
 
     return (
         <div className={ you ? s.massagesItemYou : s.massagesItem}>
-            <img className={s.massagesImg} src={you ? profileYou : profileImg}/>
-            {message}
+            <img className={s.massagesImg} src={you ? profileYou : profileImg} alt='avatar'/>
+            <p className={s.massagesText}>{message}</p>
         </div>
     );
 };
