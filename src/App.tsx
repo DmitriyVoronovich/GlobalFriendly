@@ -51,8 +51,10 @@ export type PostType = {
 }
 
 const App:React.FC<AppPropsType> = (props) => {
-
     const {state} = props
+
+
+
     return (
         <BrowserRouter>
             <div className='app-wrapper'>

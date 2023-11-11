@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./dialog-item/DialogItem";
 import Message from "./message/Message";
@@ -9,7 +9,16 @@ type DialogPropsType = {
 }
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
-    const {state} = props
+    const {state} = props;
+    const [newMessage, setNewMessage] = useState<string>('')
+
+    const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        setNewMessage(e.currentTarget.value)
+    };
+
+    const addMessage = (newMessage: string) => {
+        const message = {id: Math.random(),message: newMessage, you: true}
+    }
 
     return (
         <section className={s.dialogs}>
@@ -28,6 +37,10 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                             <Message key={item.id} message={item.message} you={item.you}/>
                         )
                     })}
+                </div>
+                <div>
+                    <textarea onChange={changeTextareaHandler} ></textarea>
+                    <button onClick={() => addMessage(newMessage)}>Send message</button>
                 </div>
             </div>
         </section>
