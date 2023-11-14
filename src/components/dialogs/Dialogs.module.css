@@ -1,5 +1,8 @@
-.dialogs h2 {
+.dialogs {
     grid-area: c;
+}
+
+.dialogs h2 {
     margin: 0 auto;
 }
 
@@ -26,4 +29,13 @@
     display: flex;
     flex-flow: column nowrap;
     margin-right: auto;
+}
+
+.dialogInput {
+    display: flex;
+    margin-left: 13vw;
+}
+
+.dialogInput textarea{
+    width: 33vw;
 }

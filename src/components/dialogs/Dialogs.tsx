@@ -6,18 +6,20 @@ import {DialogsPageType} from "../../App";
 
 type DialogPropsType = {
     state: DialogsPageType
+    addMessage: (newMessage: string) => void
 }
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
-    const {state} = props;
+    const {state, addMessage} = props;
     const [newMessage, setNewMessage] = useState<string>('')
 
     const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setNewMessage(e.currentTarget.value)
     };
 
-    const addMessage = (newMessage: string) => {
-        const message = {id: Math.random(),message: newMessage, you: true}
+    const addedNewMessage = () => {
+        addMessage(newMessage);
+        setNewMessage('');
     }
 
     return (
@@ -38,10 +40,10 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                         )
                     })}
                 </div>
-                <div>
-                    <textarea onChange={changeTextareaHandler} ></textarea>
-                    <button onClick={() => addMessage(newMessage)}>Send message</button>
-                </div>
+            </div>
+            <div className={s.dialogInput}>
+                <textarea onChange={changeTextareaHandler} value={newMessage}></textarea>
+                <button onClick={addedNewMessage}>Send message</button>
             </div>
         </section>
     );

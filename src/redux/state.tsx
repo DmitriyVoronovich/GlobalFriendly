@@ -29,3 +29,13 @@ export let state = {
         {id: 3, name: 'Kate'}
     ]
 }
+
+export const addPost = (postMessage: string) => {
+    const post = {id: Math.random(),message: postMessage, like: 0 };
+    state.profilePage.posts.push(post);
+};
+
+export const addMessage = (newMessage: string) => {
+    const message = {id: Math.random(),message: newMessage, you: true};
+    state.dialogsPage.message.push(message)
+}
