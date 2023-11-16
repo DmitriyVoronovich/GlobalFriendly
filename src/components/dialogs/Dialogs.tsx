@@ -42,7 +42,7 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                 </div>
             </div>
             <div className={s.dialogInput}>
-                <textarea onChange={changeTextareaHandler} value={newMessage}></textarea>
+                <textarea onChange={changeTextareaHandler} value={newMessage} />
                 <button onClick={addedNewMessage}>Send message</button>
             </div>
         </section>

@@ -23,7 +23,7 @@ export let state = {
             {id: 6, message: 'fuck you', you: false}
         ]
     },
-    sidbar: [
+    sidebar: [
         {id: 1, name: 'Dmitriy'},
         {id: 2, name: 'Oleg'},
         {id: 3, name: 'Kate'}

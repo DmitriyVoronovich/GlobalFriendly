@@ -25,7 +25,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         <div>
             My post
             <div>
-                <textarea onChange={changeTextareaHandler} value={newPost}></textarea>
+                <textarea onChange={changeTextareaHandler} value={newPost} />
                 <button onClick={addedNewPost}>Add post</button>
             </div>
             <div className={s.posts}>

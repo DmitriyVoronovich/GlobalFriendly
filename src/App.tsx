@@ -18,7 +18,7 @@ type AppPropsType = {
 type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
-    sidbar: SidebarType[]
+    sidebar: SidebarType[]
 }
 
 export type SidebarType = {
@@ -61,7 +61,7 @@ const App:React.FC<AppPropsType> = (props) => {
         <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar state={state.sidbar}/>
+                <Navbar state={state.sidebar}/>
                 <Route render={() => <Profile state={state.profilePage} addPost={addPost}/>} path={'/profile'}/>
                 <Route render={() => <Dialogs state={state.dialogsPage} addMessage={addMessage}/>} path={'/dialogs'} />
                 <Route render={() => <News/>} path={'/news'}/>
