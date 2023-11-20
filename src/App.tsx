@@ -57,7 +57,6 @@ const App:React.FC<AppPropsType> = (props) => {
 
 
     return (
-        <BrowserRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar state={state.sidebar}/>
@@ -67,7 +66,6 @@ const App:React.FC<AppPropsType> = (props) => {
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>
             </div>
-        </BrowserRouter>
     );
 }
 

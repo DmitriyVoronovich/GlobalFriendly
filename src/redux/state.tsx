@@ -38,26 +38,18 @@ export let store = {
     },
 
     dispatch(action: any) {
-        if (action.type === 'ADD-POST') {
+        if (action.type === ADD_POST) {
             const post = {id: Math.random(),message: action.newText, like: 0 };
             this._state.profilePage.posts.push(post);
-        } else if (action.type === 'ADD-MESSAGE') {
+        } else if (action.type === ADD_MESSAGE) {
             const message = {id: Math.random(),message: action.newText, you: true};
             this._state.dialogsPage.message.push(message)
         }
     }
 };
 
-export const addPostActionCreator = (newPost: string) => {
-    return {
-        type: ADD_POST,
-        newText: newPost
-    }
-};
+export const addPostActionCreator = (newPost: string) =>
+    ({type: ADD_POST, newText: newPost});
 
-export const addMessageActionCreator = (newMessage: string) => {
-    return {
-        type: ADD_MESSAGE,
-        newText: newMessage
-    }
-};
+export const addMessageActionCreator = (newMessage: string) =>
+    ({type: ADD_MESSAGE, newText: newMessage});
