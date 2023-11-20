@@ -6,7 +6,6 @@ import {store} from "./redux/state";
 
 ReactDOM.render(
     <App state={store.getState()}
-         addPost={store.addPost.bind(store)}
-         addMessage={store.addMessage.bind(store)}/>,
+         dispatch={store.dispatch.bind(store)}/>,
   document.getElementById('root')
 );

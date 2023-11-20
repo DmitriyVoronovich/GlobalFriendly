@@ -6,11 +6,11 @@ import {DialogsPageType} from "../../App";
 
 type DialogPropsType = {
     state: DialogsPageType
-    addMessage: (newMessage: string) => void
+    dispatch: any
 }
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
-    const {state, addMessage} = props;
+    const {state, dispatch} = props;
     const [newMessage, setNewMessage] = useState<string>('')
 
     const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -18,7 +18,7 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
     };
 
     const addedNewMessage = () => {
-        addMessage(newMessage);
+        dispatch({type: 'ADD_MESSAGE', newMessage:newMessage});
         setNewMessage('');
     }
 

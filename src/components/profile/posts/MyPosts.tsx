@@ -2,14 +2,15 @@ import React, {ChangeEvent, useState} from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./post/Post";
 import {PostType} from "../../../App";
+import {type} from "os";
 
 type MyPostsPropsType ={
     posts: PostType[]
-    addPost: (postMessage: string) => void
+    dispatch: any
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
-    const {posts, addPost} = props;
+    const {posts, dispatch} = props;
     const [newPost, setNewPost] = useState<string>('')
 
     const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
@@ -17,7 +18,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     };
 
     const addedNewPost = () => {
-        addPost(newPost);
+        dispatch({type: 'ADD_POST', postMessage: newPost});
         setNewPost('')
     }
 

@@ -11,8 +11,7 @@ import Settings from "./components/settings/Settings";
 
 type AppPropsType = {
     state: StateType
-    addPost: (postMessage: string) => void
-    addMessage: (newMessage: string) => void
+    dispatch: any
 }
 
 type StateType = {
@@ -53,7 +52,7 @@ export type PostType = {
 }
 
 const App:React.FC<AppPropsType> = (props) => {
-    const {state, addPost, addMessage} = props
+    const {state, dispatch} = props
 
 
 
@@ -62,8 +61,8 @@ const App:React.FC<AppPropsType> = (props) => {
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar state={state.sidebar}/>
-                <Route render={() => <Profile state={state.profilePage} addPost={addPost}/>} path={'/profile'}/>
-                <Route render={() => <Dialogs state={state.dialogsPage} addMessage={addMessage}/>} path={'/dialogs'} />
+                <Route render={() => <Profile state={state.profilePage} dispatch={dispatch}/>} path={'/profile'}/>
+                <Route render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch}/>} path={'/dialogs'} />
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>

@@ -33,12 +33,14 @@ export let store = {
     getState() {
         return this._state;
     },
-    addPost(postMessage: string) {
-        const post = {id: Math.random(),message: postMessage, like: 0 };
-        this._state.profilePage.posts.push(post);
-    },
-    addMessage (newMessage: string) {
-        const message = {id: Math.random(),message: newMessage, you: true};
-        this._state.dialogsPage.message.push(message)
-    },
+
+    dispatch(action: any) {
+        if (action.type === 'ADD_POST') {
+            const post = {id: Math.random(),message: action.postMessage, like: 0 };
+            this._state.profilePage.posts.push(post);
+        } else if (action.type === 'ADD_MESSAGE') {
+            const message = {id: Math.random(),message: action.newMessage, you: true};
+            this._state.dialogsPage.message.push(message)
+        }
+    }
 }
