@@ -3,6 +3,7 @@ import s from './Dialogs.module.css'
 import DialogItem from "./dialog-item/DialogItem";
 import Message from "./message/Message";
 import {DialogsPageType} from "../../App";
+import {addMessageActionCreator} from "../../redux/state";
 
 type DialogPropsType = {
     state: DialogsPageType
@@ -11,16 +12,16 @@ type DialogPropsType = {
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
     const {state, dispatch} = props;
-    const [newMessage, setNewMessage] = useState<string>('')
+    const [newMessage, setNewMessage] = useState<string>('');
 
     const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setNewMessage(e.currentTarget.value)
     };
 
     const addedNewMessage = () => {
-        dispatch({type: 'ADD_MESSAGE', newMessage:newMessage});
+        dispatch(addMessageActionCreator(newMessage));
         setNewMessage('');
-    }
+    };
 
     return (
         <section className={s.dialogs}>

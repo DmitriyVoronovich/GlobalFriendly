@@ -12,47 +12,47 @@ import Settings from "./components/settings/Settings";
 type AppPropsType = {
     state: StateType
     dispatch: any
-}
+};
 
 type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType[]
-}
+};
 
 export type SidebarType = {
     id: number
     name: string
-}
+};
 
 export type ProfilePageType = {
     posts: PostType[]
-}
+};
 
 export type DialogsPageType = {
     dialog: DialogType[]
     message: MessageType[]
-}
+};
 
 export type DialogType = {
     id: number
     name: string
-}
+};
 
 export type MessageType = {
     id: number
     message: string
     you: boolean
-}
+};
 
 export type PostType = {
     id: number
     message: string
     like: number
-}
+};
 
 const App:React.FC<AppPropsType> = (props) => {
-    const {state, dispatch} = props
+    const {state, dispatch} = props;
 
 
 

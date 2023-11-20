@@ -1,3 +1,6 @@
+const ADD_POST = 'ADD-POST';
+const ADD_MESSAGE = 'ADD-MESSAGE';
+
 export let store = {
     _state: {
         profilePage: {
@@ -35,12 +38,26 @@ export let store = {
     },
 
     dispatch(action: any) {
-        if (action.type === 'ADD_POST') {
-            const post = {id: Math.random(),message: action.postMessage, like: 0 };
+        if (action.type === 'ADD-POST') {
+            const post = {id: Math.random(),message: action.newText, like: 0 };
             this._state.profilePage.posts.push(post);
-        } else if (action.type === 'ADD_MESSAGE') {
-            const message = {id: Math.random(),message: action.newMessage, you: true};
+        } else if (action.type === 'ADD-MESSAGE') {
+            const message = {id: Math.random(),message: action.newText, you: true};
             this._state.dialogsPage.message.push(message)
         }
     }
-}
+};
+
+export const addPostActionCreator = (newPost: string) => {
+    return {
+        type: ADD_POST,
+        newText: newPost
+    }
+};
+
+export const addMessageActionCreator = (newMessage: string) => {
+    return {
+        type: ADD_MESSAGE,
+        newText: newMessage
+    }
+};

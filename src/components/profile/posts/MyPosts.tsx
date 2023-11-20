@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./post/Post";
 import {PostType} from "../../../App";
-import {type} from "os";
+import {addPostActionCreator} from "../../../redux/state";
 
 type MyPostsPropsType ={
     posts: PostType[]
@@ -18,7 +18,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     };
 
     const addedNewPost = () => {
-        dispatch({type: 'ADD_POST', postMessage: newPost});
+        dispatch(addPostActionCreator(newPost));
         setNewPost('')
     }
 
