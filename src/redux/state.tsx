@@ -1,5 +1,6 @@
-const ADD_POST = 'ADD-POST';
-const ADD_MESSAGE = 'ADD-MESSAGE';
+import { profileReducer} from "./profile-reducer";
+import { dialogsReducer} from "./dialogs-reducer";
+
 
 export let store = {
     _state: {
@@ -38,18 +39,10 @@ export let store = {
     },
 
     dispatch(action: any) {
-        if (action.type === ADD_POST) {
-            const post = {id: Math.random(),message: action.newText, like: 0 };
-            this._state.profilePage.posts.push(post);
-        } else if (action.type === ADD_MESSAGE) {
-            const message = {id: Math.random(),message: action.newText, you: true};
-            this._state.dialogsPage.message.push(message)
-        }
+        this._state.profilePage =  profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
     }
 };
 
-export const addPostActionCreator = (newPost: string) =>
-    ({type: ADD_POST, newText: newPost});
 
-export const addMessageActionCreator = (newMessage: string) =>
-    ({type: ADD_MESSAGE, newText: newMessage});
+
