@@ -20,12 +20,12 @@ export let store = {
                 {id: 6, name: 'Pavel'}
             ],
             message: [
-                {id: 1, message: 'Hi, how are you?', you: true},
-                {id: 2, message: 'Yo', you: false},
-                {id: 3, message: 'GG', you: true},
-                {id: 4, message: 'Oh, no', you: true},
-                {id: 5, message: 'loser', you: false},
-                {id: 6, message: 'fuck you', you: false}
+                {id: 1, message: 'Восколько ты сможешь созвониться, когда будешь свободен?', you: true},
+                {id: 2, message: 'Давай через полчасика', you: false},
+                {id: 3, message: 'Или часик', you: false},
+                {id: 4, message: 'Лучше полчасика', you: false},
+                {id: 5, message: 'Давай через полчаса', you: true},
+                {id: 6, message: 'В 40 минут тогда', you: true}
             ]
         },
         sidebar: [
