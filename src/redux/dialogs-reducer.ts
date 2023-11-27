@@ -11,7 +11,7 @@ export const dialogsReducer = (state: DialogsPageType, action: AddMessageActionC
         default:
             return state;
     }
-}
+};
 
 type AddMessageActionCreator = ReturnType<typeof addMessageActionCreator>
 
