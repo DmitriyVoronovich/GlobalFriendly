@@ -20,7 +20,13 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     const addedNewPost = () => {
         dispatch(addPostActionCreator(newPost));
         setNewPost('')
-    }
+    };
+
+    const post = posts.map((item) => {
+        return (
+            <Post key={item.id} like={item.like} message={item.message}/>
+        )
+    })
 
     return (
         <div>
@@ -30,11 +36,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                 <button onClick={addedNewPost}>Add post</button>
             </div>
             <div className={s.posts}>
-                {posts.map((item) => {
-                    return (
-                        <Post key={item.id} like={item.like} message={item.message}/>
-                    )
-                })}
+                {post}
             </div>
         </div>
     );
