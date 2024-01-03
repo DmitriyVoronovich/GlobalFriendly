@@ -1,25 +1,23 @@
 import React from 'react';
-import {DialogsPageType} from "../../App";
 import {addMessageActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
+import {connect} from "react-redux";
+import {StateType} from "../../App";
 
-type DialogContainerPropsType = {
-    state: DialogsPageType
-    dispatch: any
+let mapStateToProps = (state: StateType) => {
+    return {
+        dialog: state.dialogsPage.dialog,
+        message: state.dialogsPage.message
+    }
+}
+let mapDispatchToProps = (dispatch: any) => {
+    return {
+        addedNewMessage: (newMessage: string) => {
+            dispatch(addMessageActionCreator(newMessage))
+        }
+    }
 }
 
-const DialogContainer: React.FC<DialogContainerPropsType> = (props) => {
-    const {state, dispatch} = props;
-
-    const addedNewMessage = (newMessage: string) => {
-        dispatch(addMessageActionCreator(newMessage));
-    };
-
-    return (
-        <Dialogs dialog={state.dialog}
-                 addedNewMessage={addedNewMessage}
-                 message={state.message}/>
-    );
-};
+const DialogContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)
 
 export default DialogContainer;

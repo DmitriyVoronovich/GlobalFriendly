@@ -5,11 +5,11 @@ import {SidebarType} from "../../App";
 import profileImg from "../../assets/image/profile.webp";
 
 type NavbarPropsType = {
-    state: SidebarType[]
+    sidebar: SidebarType[]
 }
 
 const Navbar: React.FC<NavbarPropsType> = (props) => {
-    const {state} = props
+    const {sidebar} = props
 
     return (
         <div className={s.navBar}>
@@ -22,10 +22,10 @@ const Navbar: React.FC<NavbarPropsType> = (props) => {
                 <div className={s.sidebar}>
                     <span className={s.sidebarTitle}>Friends</span>
                     <div className={s.sidebarWrapper}>
-                        {state.map(item => {
+                        {sidebar.map(item => {
                             return (
                                 <div className={s.sidebarItem} key={item.id}>
-                                    <img className={s.sidebarImg} src={profileImg}/>
+                                    <img className={s.sidebarImg} src={profileImg} alt={'Users avatar'}/>
                                     <span className={s.sidebarName}>{item.name}</span>
                                 </div>
                             )

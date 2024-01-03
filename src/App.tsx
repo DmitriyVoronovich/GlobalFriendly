@@ -1,21 +1,15 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/header/Header";
-import Navbar from "./components/navbar/Navbar";
-import Dialogs from "./components/dialogs/Dialogs";
 import { Route} from "react-router-dom";
 import Profile from "./components/profile/Profile";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 import DialogContainer from "./components/dialogs/DialogsContainer";
+import NavbarContainer from "./components/navbar/NavbarContainer";
 
-type AppPropsType = {
-    state: StateType
-    dispatch: any
-};
-
-type StateType = {
+export type StateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType[]
@@ -52,17 +46,14 @@ export type PostType = {
     like: number
 };
 
-const App:React.FC<AppPropsType> = (props) => {
-    const {state, dispatch} = props;
-
-
+const App = () => {
 
     return (
             <div className='app-wrapper'>
                 <Header/>
-                <Navbar state={state.sidebar}/>
-                <Route render={() => <Profile state={state.profilePage} dispatch={dispatch}/>} path={'/profile'}/>
-                <Route render={() => <DialogContainer state={state.dialogsPage} dispatch={dispatch}/>} path={'/dialogs'} />
+                <NavbarContainer/>
+                <Route render={() => <Profile/>} path={'/profile'}/>
+                <Route render={() => <DialogContainer />} path={'/dialogs'} />
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>
