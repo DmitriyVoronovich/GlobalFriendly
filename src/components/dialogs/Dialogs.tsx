@@ -2,34 +2,34 @@ import React, {ChangeEvent, useState} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./dialog-item/DialogItem";
 import Message from "./message/Message";
-import {DialogsPageType} from "../../App";
-import {addMessageActionCreator} from "../../redux/dialogs-reducer";
+import {DialogType, MessageType} from "../../App";
 
 type DialogPropsType = {
-    state: DialogsPageType
-    dispatch: any
+    dialog: DialogType[]
+    addedNewMessage: (newMessage: string) => void
+    message: MessageType[]
 }
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
-    const {state, dispatch} = props;
+    const {dialog, addedNewMessage, message} = props;
     const [newMessage, setNewMessage] = useState<string>('');
 
     const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setNewMessage(e.currentTarget.value)
     };
 
-    const addedNewMessage = () => {
-        dispatch(addMessageActionCreator(newMessage));
+    const addNewMessage = () => {
+        addedNewMessage(newMessage);
         setNewMessage('');
     };
 
-    const dialogs = state.dialog.map((item) => {
+    const dialogs = dialog.map((item) => {
         return (
             <DialogItem key={item.id} id={item.id} name={item.name}/>
         )
     });
 
-    const message = state.message.map((item) => {
+    const messages = message.map((item) => {
         return (
             <Message key={item.id} message={item.message} you={item.you}/>
         )
@@ -43,12 +43,12 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
                     {dialogs}
                 </div>
                 <div className={s.dialogMassages}>
-                    {message}
+                    {messages}
                 </div>
             </div>
             <div className={s.dialogInput}>
                 <textarea onChange={changeTextareaHandler} value={newMessage} />
-                <button onClick={addedNewMessage}>Send message</button>
+                <button onClick={addNewMessage}>Send message</button>
             </div>
         </section>
     );

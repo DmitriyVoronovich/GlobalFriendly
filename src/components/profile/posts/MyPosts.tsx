@@ -6,19 +6,19 @@ import {addPostActionCreator} from "../../../redux/profile-reducer";
 
 type MyPostsPropsType ={
     posts: PostType[]
-    dispatch: any
+    addedNewPost: (newPost: string) => void
 }
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
-    const {posts, dispatch} = props;
+    const {posts, addedNewPost} = props;
     const [newPost, setNewPost] = useState<string>('')
 
     const changeTextareaHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setNewPost(e.currentTarget.value)
     };
 
-    const addedNewPost = () => {
-        dispatch(addPostActionCreator(newPost));
+    const addNewPost = () => {
+        addedNewPost(newPost);
         setNewPost('')
     };
 
@@ -33,7 +33,7 @@ const MyPosts: React.FC<MyPostsPropsType> = (props) => {
             My post
             <div>
                 <textarea onChange={changeTextareaHandler} value={newPost} />
-                <button onClick={addedNewPost}>Add post</button>
+                <button onClick={addNewPost}>Add post</button>
             </div>
             <div className={s.posts}>
                 {post}

@@ -8,6 +8,7 @@ import Profile from "./components/profile/Profile";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
+import DialogContainer from "./components/dialogs/DialogsContainer";
 
 type AppPropsType = {
     state: StateType
@@ -61,7 +62,7 @@ const App:React.FC<AppPropsType> = (props) => {
                 <Header/>
                 <Navbar state={state.sidebar}/>
                 <Route render={() => <Profile state={state.profilePage} dispatch={dispatch}/>} path={'/profile'}/>
-                <Route render={() => <Dialogs state={state.dialogsPage} dispatch={dispatch}/>} path={'/dialogs'} />
+                <Route render={() => <DialogContainer state={state.dialogsPage} dispatch={dispatch}/>} path={'/dialogs'} />
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>

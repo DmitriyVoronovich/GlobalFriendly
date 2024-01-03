@@ -3,6 +3,7 @@ import s from './Profile.module.css'
 import MyPosts  from "./posts/MyPosts";
 import ProfileInfo from "./profile-info/ProfileInfo";
 import {ProfilePageType} from "../../App";
+import {MyPostsContainer} from "./posts/post/MyPostsContainer";
 
 type ProfilePropsType = {
     state: ProfilePageType
@@ -15,7 +16,7 @@ const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={s.profile}>
             <ProfileInfo/>
-            <MyPosts posts={state.posts} dispatch={dispatch}/>
+            <MyPostsContainer posts={state.posts} dispatch={dispatch}/>
         </div>
     );
 };
