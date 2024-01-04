@@ -25,8 +25,7 @@ export const dialogsReducer = (state: DialogsPageType = initialState, action: Ad
     switch (action.type) {
         case ADD_MESSAGE:
             const message = {id: Math.random(), message: action.newText, you: true};
-            state.message.push(message);
-            return state;
+            return {...state, message: [...state.message, message]};
         default:
             return state;
     }

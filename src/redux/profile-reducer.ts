@@ -13,8 +13,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ad
     switch (action.type) {
         case ADD_POST:
             const post = {id: Math.random(), message: action.payload.newText, like: 0};
-            state.posts.push(post);
-            return state;
+            return {...state, posts: [...state.posts, post]};
         default:
             return state;
     }
