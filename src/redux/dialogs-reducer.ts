@@ -22,6 +22,7 @@ let initialState = {
 }
 
 export const dialogsReducer = (state: DialogsPageType = initialState, action: AddMessageActionCreator) => {
+
     switch (action.type) {
         case ADD_MESSAGE:
             const message = {id: Math.random(), message: action.newText, you: true};
