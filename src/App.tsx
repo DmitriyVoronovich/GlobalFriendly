@@ -8,6 +8,7 @@ import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
 import DialogContainer from "./components/dialogs/DialogsContainer";
 import NavbarContainer from "./components/navbar/NavbarContainer";
+import {UsersContainer} from "./components/users/UsersContainer";
 
 export type StateType = {
     profilePage: ProfilePageType
@@ -57,6 +58,7 @@ const App = () => {
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>
+                <Route render={() => <UsersContainer/>} path={'/users'} />
             </div>
     );
 }

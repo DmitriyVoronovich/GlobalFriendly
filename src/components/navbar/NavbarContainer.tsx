@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from "react-redux";
 import Navbar from "./Navbar";
-import {StateType} from "../../App";
+import {AppRootStateType} from "../../redux/redux-store";
 
-let mapStateToProps = (state: StateType) => {
+let mapStateToProps = (state: AppRootStateType) => {
     return {
         sidebar: state.sidebar
     }
