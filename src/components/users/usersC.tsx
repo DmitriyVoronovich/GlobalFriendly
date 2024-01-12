@@ -1,9 +1,10 @@
-import React from 'react';
-import {UsersType} from "../../redux/users-reducer";
+import React from "react";
+import s from "./users.module.css";
+import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
-import s from './users.module.css'
-import axios from 'axios';
-import ava from '../../assets/image/profile.webp'
+import axios from "axios";
+import {AppRootStateType} from "../../redux/redux-store";
+import {UsersType} from "../../redux/users-reducer";
 
 type UsersPropsType = {
     users: UsersType[]
@@ -12,22 +13,26 @@ type UsersPropsType = {
     setUsers: (users: UsersType[]) => void
 }
 
-export const Users: React.FC<UsersPropsType> = (props) => {
-   if (props.users.length === 0) {
-       axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
-           props.setUsers(res.data.items)
-       })
-   }
+class Users extends React.Component<UsersPropsType, AppRootStateType>{
 
-    return (
+    constructor(props: UsersPropsType | Readonly<UsersPropsType>) {
+        super(props);
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(res => {
+                this.props.setUsers(res.data.items)
+        })
+    }
+
+    render() {
+        return (
         <div className={s.users}>
-            {props.users.map(item => {
+            {this.props.users.map(item => {
                 return (
                     <div key={item.id}>
                         <span>
                             <img className={s.photo} src={item.photos.small != null? item.photos.small : ava} alt={'User avatar'}/>
-                            {item.followed? <Button onClick={() => props.unfollow(item.id)}>Unfollowed</Button>
-                                : <Button onClick={() => props.follow(item.id)}>Followed</Button>}
+                            {item.followed? <Button onClick={() => this.props.unfollow(item.id)}>Unfollowed</Button>
+                                : <Button onClick={() => this.props.follow(item.id)}>Followed</Button>}
                         </span>
                         <span>
                             <span>
@@ -43,5 +48,8 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                 )
             })}
         </div>
-    );
-};
+        )
+    }
+}
+
+export default Users;
