@@ -10,12 +10,6 @@ import DialogContainer from "./components/dialogs/DialogsContainer";
 import NavbarContainer from "./components/navbar/NavbarContainer";
 import {UsersContainer} from "./components/users/UsersContainer";
 
-export type StateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPageType
-    sidebar: SidebarType[]
-};
-
 export type SidebarType = {
     id: number
     name: string

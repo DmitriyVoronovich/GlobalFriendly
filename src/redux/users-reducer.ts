@@ -4,13 +4,12 @@ type UsersStateType = {
 
 export type UsersType = {
     id: string
-    photo: string
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
+    photos: {
+        small: any
+        large: any
     }
+    name: string
+    status: string
     followed: boolean
 }
 

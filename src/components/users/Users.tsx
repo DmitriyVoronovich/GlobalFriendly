@@ -1,9 +1,9 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {UsersType} from "../../redux/users-reducer";
 import {Button} from "antd";
 import s from './users.module.css'
-import {v1} from "uuid";
-import ava from "../../assets/image/profile.webp";
+import axios from 'axios';
+import ava from '../../assets/image/profile.webp'
 
 type UsersPropsType = {
     users: UsersType[]
@@ -13,40 +13,11 @@ type UsersPropsType = {
 }
 
 export const Users: React.FC<UsersPropsType> = (props) => {
-    useEffect(() => props.setUsers([
-        {
-            id: v1(),
-            photo: ava,
-            fullName: 'Dmitry',
-            status: 'I am a boss',
-            location: {city: 'Minsk', country: 'Belarus'},
-            followed: true
-        },
-        {
-            id: v1(),
-            photo: ava,
-            fullName: 'Dmitry',
-            status: 'I am a boss',
-            location: {city: 'Grodno', country: 'Belarus'},
-            followed: false
-        },
-        {
-            id: v1(),
-            photo: ava,
-            fullName: 'Sveta',
-            status: 'I am a boss',
-            location: {city: 'Moscow', country: 'Russia'},
-            followed: false
-        },
-        {
-            id: v1(),
-            photo: ava,
-            fullName: 'Igor',
-            status: 'I am a boss',
-            location: {city: 'Kiev', country: 'Ukraine'},
-            followed: true
-        }
-    ]), [])
+   if (props.users.length === 0) {
+       axios.get('https://social-network.samuraijs.com/api/1.0/users').then(res => {
+           props.setUsers(res.data.items)
+       })
+   }
 
     return (
         <div className={s.users}>
@@ -54,18 +25,18 @@ export const Users: React.FC<UsersPropsType> = (props) => {
                 return (
                     <div key={item.id}>
                         <span>
-                            <img className={s.photo} src={item.photo} alt={'User avatar'}/>
+                            <img className={s.photo} src={item.photos.small != null? item.photos.small : ava} alt={'User avatar'}/>
                             {item.followed? <Button onClick={() => props.unfollow(item.id)}>Unfollowed</Button>
                                 : <Button onClick={() => props.follow(item.id)}>Followed</Button>}
                         </span>
                         <span>
                             <span>
-                                <div>{item.fullName}</div>
+                                <div>{item.name}</div>
                                 <div>{item.status}</div>
                             </span>
                             <span>
-                                <div>{item.location.city}</div>
-                                <div>{item.location.country}</div>
+                                <div>Minsk</div>
+                                <div>Belarus</div>
                             </span>
                         </span>
                     </div>
