@@ -52,7 +52,7 @@ const App = () => {
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>
-                <Route render={() => <UsersContainer/>} path={'/users'} />
+                <Route render={() => <UsersContainer />} path={'/users'} />
             </div>
     );
 }

@@ -1,88 +1,61 @@
-import React from "react";
+import React from 'react';
 import s from "./users.module.css";
 import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
-import axios from "axios";
-import {AppRootStateType} from "../../redux/redux-store";
 import {UsersType} from "../../redux/users-reducer";
 
-type UsersPropsType = {
+export type UsersComponentPropsType = {
+    totalUsersCount: number
+    pageSize: number
     users: UsersType[]
+    onPageChanged: (pageNumber: number) => void
+    currentPage: number
     follow: (id: string) => void
     unfollow: (id: string) => void
-    setUsers: (users: UsersType[]) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalUsersCount: (totalUsersCount: number) => void
-    pageSize: number
-    totalUsersCount: number
-    currentPage: number
 }
 
-class Users extends React.Component<UsersPropsType, AppRootStateType> {
+export const Users: React.FC<UsersComponentPropsType> = (props) => {
 
-    componentDidMount() {
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items)
-                this.props.setTotalUsersCount(res.data.totalCount)
-            })
-    };
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
-    onPageChanged = (pageNumber: number) => {
-        this.props.setCurrentPage(pageNumber);
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then(res => {
-                this.props.setUsers(res.data.items);
+    let pages = [];
+    for (let i = 1; i <= 10; i++) {
 
-            })
+        pages.push(i)
     }
 
-    render() {
-
-        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
-
-        let pages = [];
-        for (let i = 1; i <= 10; i++) {
-
-            pages.push(i)
-        }
-
-        return (
-            <div className={s.users}>
-                <div>
-                    {pages.map(item => {
-                        return <button className={this.props.currentPage === item ? s.selected : ''}
-                        onClick={() => {this.onPageChanged(item)}}>{item}</button>
-                    })
-                    }
-                </div>
-                {this.props.users.map(item => {
-                    return (
-                        <div key={item.id}>
-                        <span>
+    return (
+        <div className={s.users}>
+            {props.users.map(item => {
+                return (
+                    <div key={item.id} className={s.user}>
+                        <div className={s.photo_container}>
                             <img className={s.photo} src={item.photos.small != null ? item.photos.small : ava}
                                  alt={'User avatar'}/>
-                            {item.followed ? <Button onClick={() => this.props.unfollow(item.id)}>Unfollowed</Button>
-                                : <Button onClick={() => this.props.follow(item.id)}>Followed</Button>}
-                        </span>
-                            <span>
-                            <span>
-                                <div>{item.name}</div>
-                                <div>{item.status}</div>
-                            </span>
-                            <span>
-                                <div>Minsk</div>
-                                <div>Belarus</div>
-                            </span>
-                        </span>
+                            {item.followed ?
+                                <Button onClick={() => props.unfollow(item.id)}>Unfollowed</Button>
+                                : <Button onClick={() => props.follow(item.id)}>Followed</Button>}
                         </div>
-                    )
-                })}
+                        <div>
+                            <div className={s.name_container}>
+                                <span>{item.name}</span>
+                                <span>{item.status}</span>
+                            </div>
+                            <div className={s.location_container}>
+                                <span>Minsk</span>
+                                <span>Belarus</span>
+                            </div>
+                        </div>
+                    </div>
+                )
+            })}
+            <div>
+                {pages.map(item => {
+                    return <button className={props.currentPage === item ? s.selected : ''}
+                                   onClick={() => {props.onPageChanged(item)}}>{item}</button>
+                })
+                }
             </div>
-        )
-    }
-}
-
-export default Users;
+        </div>
+    );
+};

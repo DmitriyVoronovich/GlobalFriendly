@@ -19,13 +19,13 @@ export type UsersType = {
 type UsersReducerType = FollowACType
     | UnFollowACType
     | SetUsersACType
-    |SetCurrentPageACType
+    | SetCurrentPageACType
     | SetTotalUsersCountACType;
 
 const initialState = {
     users: [],
-    pageSize: 5,
-    totalUsersCount:0,
+    pageSize: 10,
+    totalUsersCount: 0,
     currentPage: 1
 };
 export const usersReducer = (state: UsersStateType = initialState, action: UsersReducerType): UsersStateType => {
