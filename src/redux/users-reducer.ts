@@ -3,6 +3,7 @@ type UsersStateType = {
     pageSize: number,
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 export type UsersType = {
@@ -20,13 +21,15 @@ type UsersReducerType = FollowACType
     | UnFollowACType
     | SetUsersACType
     | SetCurrentPageACType
-    | SetTotalUsersCountACType;
+    | SetTotalUsersCountACType
+    | ReturnType<typeof toggleIsFetchingAC>;
 
 const initialState = {
     users: [],
     pageSize: 10,
     totalUsersCount: 0,
-    currentPage: 1
+    currentPage: 1,
+    isFetching: false
 };
 export const usersReducer = (state: UsersStateType = initialState, action: UsersReducerType): UsersStateType => {
     switch (action.type) {
@@ -34,6 +37,11 @@ export const usersReducer = (state: UsersStateType = initialState, action: Users
             return {
                 ...state,
                 users: state.users.map(item => item.id === action.payload.id ? {...item, followed: true} : item)
+            }
+        }
+        case "TOGGLE_IS_FETCHING": {
+            return {
+                ...state, isFetching: action.payload.isFetching
             }
         }
         case "UNFOLLOW": {
@@ -110,3 +118,9 @@ export const setTotalUsersCountAC = (totalUsersCount: number) => {
         }
     } as const
 };
+export const toggleIsFetchingAC = (isFetching: boolean) => ({
+        type: 'TOGGLE_IS_FETCHING',
+        payload: {
+            isFetching
+        }
+    } as const);
