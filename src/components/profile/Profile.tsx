@@ -3,11 +3,15 @@ import s from './Profile.module.css';
 import ProfileInfo from "./profile-info/ProfileInfo";
 import {MyPostsContainer} from "./posts/post/MyPostsContainer";
 
-const Profile = () => {
+export type ProfilePropsType = {
+    profile: any
+}
+
+const Profile:React.FC<ProfilePropsType> = (props) => {
 
     return (
         <div className={s.profile}>
-            <ProfileInfo/>
+            <ProfileInfo profile={props.profile}/>
             <MyPostsContainer />
         </div>
     );

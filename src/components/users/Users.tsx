@@ -3,6 +3,7 @@ import s from "./users.module.css";
 import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
 import {UsersType} from "../../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 export type UsersComponentPropsType = {
     totalUsersCount: number
@@ -30,8 +31,10 @@ export const Users: React.FC<UsersComponentPropsType> = (props) => {
                 return (
                     <div key={item.id} className={s.user}>
                         <div className={s.photo_container}>
-                            <img className={s.photo} src={item.photos.small != null ? item.photos.small : ava}
-                                 alt={'User avatar'}/>
+                            <NavLink to={'/profile' + '/' + item.id}>
+                                <img className={s.photo} src={item.photos.small != null ? item.photos.small : ava}
+                                     alt={'User avatar'}/>
+                            </NavLink>
                             {item.followed ?
                                 <Button onClick={() => props.unfollow(item.id)}>Unfollowed</Button>
                                 : <Button onClick={() => props.follow(item.id)}>Followed</Button>}
