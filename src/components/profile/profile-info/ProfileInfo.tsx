@@ -1,6 +1,5 @@
 import React from 'react';
 import s from './ProfileInfo.module.css'
-import profileYou from '../../../assets/image/profileYou.webp'
 import {Preloader} from "../../common/preloader";
 
 export type ProfileInfoPropsType = {

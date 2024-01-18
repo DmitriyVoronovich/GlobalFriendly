@@ -43,7 +43,7 @@ const App = () => {
             <div className='app-wrapper'>
                 <Header/>
                 <NavbarContainer/>
-                <Route render={() => <ProfileContainer/>} path={'/profile'}/>
+                <Route render={() => <ProfileContainer/>} path={'/profile/:userId'}/>
                 <Route render={() => <DialogContainer />} path={'/dialogs'} />
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
