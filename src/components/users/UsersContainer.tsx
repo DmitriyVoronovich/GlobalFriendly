@@ -9,9 +9,9 @@ import {
     unFollow,
     UsersType
 } from "../../redux/users-reducer";
-import axios from "axios";
 import { Users } from "./Users";
 import {Preloader} from "../common/preloader";
+import {usersAPI} from "../../api/api";
 
 type UsersPropsType = {
     users: UsersType[]
@@ -31,23 +31,19 @@ export class UsersApiComponent extends React.Component<UsersPropsType, AppRootSt
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then(res => {
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(res => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(res.data.items)
-                this.props.setTotalUsersCount(res.data.totalCount)
+                this.props.setUsers(res.items)
+                this.props.setTotalUsersCount(res.totalCount)
             })
     };
 
     onPageChanged = (pageNumber: number) => {
         this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true)
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then(res => {
+        usersAPI.getUsers(pageNumber, this.props.pageSize).then(res => {
                 this.props.toggleIsFetching(false)
-                this.props.setUsers(res.data.items);
+                this.props.setUsers(res.items);
             })
     }
 

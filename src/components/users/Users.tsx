@@ -4,7 +4,7 @@ import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
+import {followAPI} from "../../api/api";
 
 export type UsersComponentPropsType = {
     totalUsersCount: number
@@ -37,23 +37,13 @@ export const Users: React.FC<UsersComponentPropsType> = (props) => {
                                      alt={'User avatar'}/>
                             </NavLink>
                             {item.followed ?
-                                <Button onClick={() => { axios
-                                    .delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,  {
-                                        withCredentials: true,
-                                    headers: {
-                                            'API-KEY': '70000ace-a569-4dfb-a311-f8d6e3694d6a'
-                                    }})
+                                <Button onClick={() => { followAPI.follow(item.id)
                                     .then((res) => {
                                         if (res.data.resultCode == 0) {
                                             props.unfollow(item.id)
                                         }})
                                 }}>Unfollowed</Button>
-                                : <Button onClick={() => { axios
-                                    .post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, null, {
-                                        withCredentials: true,
-                                        headers: {
-                                            'API-KEY': '70000ace-a569-4dfb-a311-f8d6e3694d6a'
-                                        }})
+                                : <Button onClick={() => { followAPI.unFollow(item.id)
                                     .then((res) => {
                                         if (res.data.resultCode == 0) {
                                            props.follow(item.id)
