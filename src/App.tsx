@@ -9,6 +9,7 @@ import DialogContainer from "./components/dialogs/DialogsContainer";
 import NavbarContainer from "./components/navbar/NavbarContainer";
 import {UsersContainer} from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 
 export type SidebarType = {
     id: number
@@ -41,7 +42,7 @@ const App = () => {
 
     return (
             <div className='app-wrapper'>
-                <Header/>
+                <HeaderContainer/>
                 <NavbarContainer/>
                 <Route render={() => <ProfileContainer/>} path={'/profile/:userId'}/>
                 <Route render={() => <DialogContainer />} path={'/dialogs'} />
