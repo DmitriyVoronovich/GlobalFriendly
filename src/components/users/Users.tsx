@@ -4,6 +4,7 @@ import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
 import {UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 export type UsersComponentPropsType = {
     totalUsersCount: number
@@ -36,8 +37,28 @@ export const Users: React.FC<UsersComponentPropsType> = (props) => {
                                      alt={'User avatar'}/>
                             </NavLink>
                             {item.followed ?
-                                <Button onClick={() => props.unfollow(item.id)}>Unfollowed</Button>
-                                : <Button onClick={() => props.follow(item.id)}>Followed</Button>}
+                                <Button onClick={() => { axios
+                                    .delete(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`,  {
+                                        withCredentials: true,
+                                    headers: {
+                                            'API-KEY': '70000ace-a569-4dfb-a311-f8d6e3694d6a'
+                                    }})
+                                    .then((res) => {
+                                        if (res.data.resultCode == 0) {
+                                            props.unfollow(item.id)
+                                        }})
+                                }}>Unfollowed</Button>
+                                : <Button onClick={() => { axios
+                                    .post(`https://social-network.samuraijs.com/api/1.0/follow/${item.id}`, null, {
+                                        withCredentials: true,
+                                        headers: {
+                                            'API-KEY': '70000ace-a569-4dfb-a311-f8d6e3694d6a'
+                                        }})
+                                    .then((res) => {
+                                        if (res.data.resultCode == 0) {
+                                           props.follow(item.id)
+                                        }})
+                                    }}>Followed</Button>}
                         </div>
                         <div>
                             <div className={s.name_container}>
