@@ -45,10 +45,10 @@ const App = () => {
                 <NavbarContainer/>
                 <Route render={() => <ProfileContainer/>} path={'/profile/:userId'}/>
                 <Route render={() => <DialogContainer />} path={'/dialogs'} />
+                <Route render={() => <UsersContainer />} path={'/users'} />
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>
-                <Route render={() => <UsersContainer />} path={'/users'} />
             </div>
     );
 }
