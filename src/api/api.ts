@@ -26,7 +26,13 @@ export const followAPI = {
 }
 
 export const authAPI = {
-    getAuth() {
-        instance.get(`auth/me`).then(response => response.data)
+    me() {
+        return instance.get(`auth/me`)
+    }
+}
+
+export const profileAPI = {
+    getProfile(id: string) {
+        return instance.get('profile/' + id)
     }
 }

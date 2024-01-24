@@ -157,21 +157,21 @@ export const getUsersTC = (currentPage: number,pageSize: number ) => (dispatch: 
 }
 
 export const followAC = (id: string) => (dispatch: Dispatch) => {
-    dispatch(toggleIsFollowingInProgress(id,true))
+    dispatch(toggleIsFollowingInProgress(id,true));
     followAPI.follow(id)
         .then((res) => {
-            dispatch(toggleIsFollowingInProgress(id,false))
+            dispatch(toggleIsFollowingInProgress(id,false));
             if (res.data.resultCode == 0) {
-                dispatch(follow(id))
+                dispatch(follow(id));
             }})
 }
 
 export const unFollowAC = (id: string) => (dispatch: Dispatch) => {
-    dispatch(toggleIsFollowingInProgress(id,true))
+    dispatch(toggleIsFollowingInProgress(id,true));
     followAPI.unFollow(id)
         .then((res) => {
-            dispatch(toggleIsFollowingInProgress(id,false))
+            dispatch(toggleIsFollowingInProgress(id,false));
             if (res.data.resultCode == 0) {
-                dispatch(unFollow(id))
+                dispatch(unFollow(id));
             }})
 }

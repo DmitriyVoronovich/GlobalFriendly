@@ -1,4 +1,6 @@
 import {PostType} from "../App";
+import {Dispatch} from "redux";
+import {profileAPI} from "../api/api";
 
 export const ADD_POST = 'ADD-POST';
 
@@ -45,3 +47,9 @@ export const setUserProfile = (profile: any) => ({
         profile
     }
 } as const)
+export const getProfileTC = (id: string) => (dispatch: Dispatch) => {
+    profileAPI.getProfile(id)
+        .then(res => {
+            dispatch(setUserProfile(res.data))
+        })
+}
