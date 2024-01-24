@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {followAPI, usersAPI} from "../api/api";
+
 type UsersStateType = {
     users: UsersType[]
     pageSize: number,
@@ -143,3 +146,32 @@ export const toggleIsFollowingInProgress = (id: string, isFetching: boolean) => 
             isFetching
         }
     } as const);
+
+export const getUsersTC = (currentPage: number,pageSize: number ) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(currentPage, pageSize).then(res => {
+        dispatch(toggleIsFetching(false));
+        dispatch(setUsers(res.items));
+        dispatch(setTotalUsersCount(res.totalCount));
+    })
+}
+
+export const followAC = (id: string) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFollowingInProgress(id,true))
+    followAPI.follow(id)
+        .then((res) => {
+            dispatch(toggleIsFollowingInProgress(id,false))
+            if (res.data.resultCode == 0) {
+                dispatch(follow(id))
+            }})
+}
+
+export const unFollowAC = (id: string) => (dispatch: Dispatch) => {
+    dispatch(toggleIsFollowingInProgress(id,true))
+    followAPI.unFollow(id)
+        .then((res) => {
+            dispatch(toggleIsFollowingInProgress(id,false))
+            if (res.data.resultCode == 0) {
+                dispatch(unFollow(id))
+            }})
+}
