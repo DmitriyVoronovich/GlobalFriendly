@@ -7,7 +7,8 @@ import {AppRootStateType} from "../../redux/redux-store";
 let mapStateToProps = (state: AppRootStateType) => {
     return {
         dialog: state.dialogsPage.dialog,
-        message: state.dialogsPage.message
+        message: state.dialogsPage.message,
+        isAuth: state.auth.isAuth
     }
 }
 let mapDispatchToProps = (dispatch: any) => {

@@ -3,11 +3,14 @@ import s from './Dialogs.module.css'
 import DialogItem from "./dialog-item/DialogItem";
 import Message from "./message/Message";
 import {DialogType, MessageType} from "../../App";
+import {Login} from "../login/Login";
+import {Redirect} from "react-router-dom";
 
 type DialogPropsType = {
     dialog: DialogType[]
     addedNewMessage: (newMessage: string) => void
     message: MessageType[]
+    isAuth: boolean
 }
 
 const Dialogs: React.FC<DialogPropsType> = (props) => {
@@ -34,6 +37,10 @@ const Dialogs: React.FC<DialogPropsType> = (props) => {
             <Message key={item.id} message={item.message} you={item.you}/>
         )
     });
+
+    if (!props.isAuth) {
+       return <Redirect to={'/login'}/>
+    }
 
     return (
         <section className={s.dialogs}>

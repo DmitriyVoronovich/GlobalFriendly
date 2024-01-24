@@ -8,7 +8,6 @@ export type ProfilePropsType = {
 }
 
 const Profile:React.FC<ProfilePropsType> = (props) => {
-
     return (
         <div className={s.profile}>
             <ProfileInfo profile={props.profile}/>
