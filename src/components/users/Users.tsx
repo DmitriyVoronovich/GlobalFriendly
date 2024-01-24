@@ -2,7 +2,7 @@ import React from 'react';
 import s from "./users.module.css";
 import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
-import {UsersType} from "../../redux/users-reducer";
+import {toggleIsFollowingInProgress, UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {followAPI} from "../../api/api";
 
@@ -14,6 +14,8 @@ export type UsersComponentPropsType = {
     currentPage: number
     follow: (id: string) => void
     unfollow: (id: string) => void
+    toggleIsFollowingInProgress: (id: string, isFetching: boolean) => void
+    followingInProgress: string[]
 }
 
 export const Users: React.FC<UsersComponentPropsType> = (props) => {
@@ -37,14 +39,20 @@ export const Users: React.FC<UsersComponentPropsType> = (props) => {
                                      alt={'User avatar'}/>
                             </NavLink>
                             {item.followed ?
-                                <Button onClick={() => { followAPI.follow(item.id)
+                                <Button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
+                                    props.toggleIsFollowingInProgress(item.id,true)
+                                    followAPI.follow(item.id)
                                     .then((res) => {
+                                        props.toggleIsFollowingInProgress(item.id,false)
                                         if (res.data.resultCode == 0) {
                                             props.unfollow(item.id)
                                         }})
                                 }}>Unfollowed</Button>
-                                : <Button onClick={() => { followAPI.unFollow(item.id)
+                                : <Button disabled={props.followingInProgress.some(id => id === item.id)} onClick={() => {
+                                    props.toggleIsFollowingInProgress(item.id,true)
+                                    followAPI.unFollow(item.id)
                                     .then((res) => {
+                                        props.toggleIsFollowingInProgress(item.id,false)
                                         if (res.data.resultCode == 0) {
                                            props.follow(item.id)
                                         }})
