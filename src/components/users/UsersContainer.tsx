@@ -10,7 +10,6 @@ import {
 } from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader";
-import {usersAPI} from "../../api/api";
 
 type UsersPropsType = {
     users: UsersType[]
