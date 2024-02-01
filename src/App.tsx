@@ -44,6 +44,7 @@ const App = () => {
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <NavbarContainer/>
+                <Route render={() => <ProfileContainer/>} path={'*'}/>
                 <Route render={() => <ProfileContainer/>} path={'/profile/:userId'}/>
                 <Route render={() => <DialogContainer />} path={'/dialogs'} />
                 <Route render={() => <UsersContainer />} path={'/users'} />
