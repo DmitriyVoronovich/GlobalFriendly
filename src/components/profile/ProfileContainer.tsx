@@ -22,7 +22,6 @@ class ProfileContainer extends React.Component<ProfileContainerPropsType, AppRoo
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        console.log('a')
         if (!userId) {
             userId = 30364
         }
