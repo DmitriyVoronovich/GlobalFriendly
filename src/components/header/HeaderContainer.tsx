@@ -1,7 +1,7 @@
 import React from "react";
 import { AppRootStateType } from "../../redux/redux-store";
 import Header from "./Header";
-import {getProfileTC} from "../../redux/auth-reducer";
+import {getProfileTC, logout} from "../../redux/auth-reducer";
 import { connect, ConnectedProps } from "react-redux";
 
 class HeaderContainer extends React.Component<PropsFromRedux> {
@@ -10,7 +10,7 @@ class HeaderContainer extends React.Component<PropsFromRedux> {
     }
 
     render() {
-        return <Header isAuth={this.props.isAuth} />;
+        return <Header isAuth={this.props.isAuth} login={this.props.login} logout={this.props.logout}/>;
     }
 }
 
@@ -19,11 +19,9 @@ const mapStateToProps = (state: AppRootStateType) => ({
     login: state.auth.login,
 });
 
-const mapDispatchToProps = {
-    getProfileTC,
-};
 
-const connector = connect(mapStateToProps, mapDispatchToProps);
+const connector = connect(mapStateToProps, {getProfileTC,
+    logout});
 
 type PropsFromRedux = ConnectedProps<typeof connector>;
 

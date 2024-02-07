@@ -21,13 +21,16 @@ type ProfileContainerPropsType = {
 class ProfileContainer extends React.Component<ProfileContainerPropsType, AppRootStateType> {
 
     componentDidMount() {
-        let userId = this.props.match.params.userId
+        let userId = this.props.match.params.userId;
+
         if (!userId) {
-            userId = 30364
+            userId = 30364;
         }
+
         this.props.getProfileTC(userId);
-        this.props.getStatusTC(userId)
+        this.props.getStatusTC(userId);
     }
+
 
     render() {
 
@@ -50,7 +53,7 @@ let mapStateToProps = (state: AppRootStateType) => {
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC}),
     withRouter,
+    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC}),
     withAuthRedirect,
 )(ProfileContainer)

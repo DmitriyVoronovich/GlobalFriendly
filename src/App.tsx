@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { Route} from "react-router-dom";
+import {Redirect, Route} from "react-router-dom";
 import News from "./components/news/News";
 import Music from "./components/music/Music";
 import Settings from "./components/settings/Settings";
@@ -9,7 +9,8 @@ import NavbarContainer from "./components/navbar/NavbarContainer";
 import {UsersContainer} from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
-import {Login} from "./components/login/Login";
+import LoginContainer from "./components/login/LoginContainer";
+
 
 export type SidebarType = {
     id: number
@@ -50,7 +51,8 @@ const App = () => {
                 <Route render={() => <News/>} path={'/news'}/>
                 <Route render={() => <Music/>} path={'/music'}/>
                 <Route render={() => <Settings/>} path={'/settings'}/>
-                <Route render={() => <Login/>} path={'/login'}/>
+                <Route render={() => <LoginContainer/>} path={'/login'}/>
+                <Redirect to={'/profile/:userId'} path={'/'} />
             </div>
     );
 }

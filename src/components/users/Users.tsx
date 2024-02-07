@@ -4,7 +4,6 @@ import ava from "../../assets/image/profile.webp";
 import {Button} from "antd";
 import { UsersType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {useDispatch} from "react-redux";
 
 export type UsersComponentPropsType = {
     totalUsersCount: number
@@ -20,7 +19,7 @@ export type UsersComponentPropsType = {
 
 export const Users: React.FC<UsersComponentPropsType> = (props) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    // let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
 
     let pages = [];
     for (let i = 1; i <= 10; i++) {
@@ -34,7 +33,7 @@ export const Users: React.FC<UsersComponentPropsType> = (props) => {
                 return (
                     <div key={item.id} className={s.user}>
                         <div className={s.photo_container}>
-                            <NavLink to={'/profile' + '/' + item.id}>
+                            <NavLink to={'/profile/' + item.id}>
                                 <img className={s.photo} src={item.photos.small != null ? item.photos.small : ava}
                                      alt={'User avatar'}/>
                             </NavLink>
