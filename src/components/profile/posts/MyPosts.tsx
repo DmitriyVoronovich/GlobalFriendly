@@ -1,13 +1,17 @@
-import React, {ChangeEvent, useState} from 'react';
+import React from 'react';
 import s from "./MyPosts.module.css";
 import Post from "./post/Post";
 import {PostType} from "../../../App";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import { maxLengthCreator, required} from "../../../utils/validators/validators";
+import {FormControl} from '../../common/FormControls/FormControl';
 
-type MyPostsPropsType ={
+type MyPostsPropsType = {
     posts: PostType[]
     addedNewPost: (newPost: string) => void
 }
+
+const maxLengthCreator10 = maxLengthCreator(10)
 
 const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     const {posts, addedNewPost} = props;
@@ -41,8 +45,11 @@ export const AddPostForm: React.FC<InjectedFormProps<FormDataPostType>> = (props
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={s.dialogInput}>
-                <Field placeholder={'Enter your message'} name={'newPostBody'} component={'textarea'}/>
-                <button >Send post</button>
+                <Field placeholder={'Enter your message'}
+                       name={'newPostBody'}
+                       component={FormControl}
+                       validate={[required,maxLengthCreator10]}/>
+                <button>Send post</button>
             </div>
         </form>
     )
