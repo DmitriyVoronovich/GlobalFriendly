@@ -1,16 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import store from "./redux/redux-store";
-import {BrowserRouter} from "react-router-dom";
-import {Provider} from "react-redux";
+import React from 'react'
+import './index.css'
+import App from 'app/App'
+import { BrowserRouter } from 'react-router-dom'
+import { store } from 'redux/store'
+import { Provider } from 'react-redux'
+import { createRoot } from 'react-dom/client'
+import '@fontsource/source-sans-pro/400.css'
+import '@fontsource/source-sans-pro/600.css'
+import '@fontsource/source-sans-pro/700.css'
+import './variable.css'
 
-ReactDOM.render(
-    <BrowserRouter>
-        <Provider store={store}>
+
+const root = createRoot(document.getElementById('root') as HTMLElement)
+
+root.render(
+    <Provider store={store}>
+        <BrowserRouter>
             <App />
-        </Provider>
-    </BrowserRouter>,
-    document.getElementById('root')
-);
+        </BrowserRouter>
+    </Provider>
+)
+
