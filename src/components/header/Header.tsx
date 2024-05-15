@@ -31,7 +31,7 @@ export const AppHeader = () => {
     return (
         <header className={s.headerBlock}>
             <NavLink to={'/'}>
-                <img className={s.logo} src={logo} alt={'logo'} />
+               <span className={s.logo}>Global Friendly</span>
             </NavLink>
             {isAuth && (
                 <div className={s.loginInfo}>
